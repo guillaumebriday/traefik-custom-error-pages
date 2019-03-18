@@ -29,6 +29,16 @@ You can use this project in production with Netlify:
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/guillaumebriday/traefik-custom-error-pages)
 
+## How to use with Traefik and Docker
+
+Labels are already define in the image to work with Traefik.
+
+To use it in production just run the container :
+
+```bash
+$ docker run --rm -d guillaumebriday/traefik-custom-error-pages
+```
+
 ## Credits
 
 I used the [Laravel](https://laravel.com/) default HTTP error pages.
