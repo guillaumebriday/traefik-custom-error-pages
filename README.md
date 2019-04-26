@@ -40,7 +40,7 @@ Labels are already define in the image to work with Traefik.
 To use it in production just run the container :
 
 ```bash
-$ docker run --rm -d guillaumebriday/traefik-custom-error-pages
+$ docker run -d --restart always guillaumebriday/traefik-custom-error-pages
 ```
 
 ## Credits
