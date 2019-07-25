@@ -48,7 +48,7 @@ As you can see in the Dockerfile, I use [Nginx](https://www.nginx.com/) as Web s
 
 For traefik, I hardcoded [Labels](https://docs.traefik.io/user-guide/docker-and-lets-encrypt/#labels) in the Dockerfile.
 
-You will find in this article [https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all](https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all/] why I set up `priority` and `rule` this way.
+You will find in this article [https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all](https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all/) why I set up `priority` and `rule` this way.
 
 ```ini
 LABEL traefik.frontend.priority="1"
