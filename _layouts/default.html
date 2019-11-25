@@ -10,7 +10,7 @@
       <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet" type="text/css">
 
       <!-- Styles -->
-      <link rel="stylesheet" href="assets/application.css">
+      {% asset application.css @inline %}
     </head>
 
     <body class="antialiased font-sans">
@@ -30,7 +30,7 @@
             </div>
 
             <div class="relative pb-full md:flex md:pb-0 md:min-h-screen w-full md:w-1/2">
-              <div style="background-image: url(assets/{{ page.asset }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
+              <div style="background-image: url({% asset {{page.asset}} @data %});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
               </div>
             </div>
         </div>
