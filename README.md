@@ -7,37 +7,52 @@
 
 A bunch of custom error pages for Traefik built with [Jekyll](https://jekyllrb.com/).
 
-## Installation
+## Development
 
 Install dependencies
+
 ```bash
 $ bundle install
 ```
 
 If you want to build the project on your host:
+
 ```bash
 $ jekyll build
 ```
 
 If you want to preview the pages before building the Docker image :
+
 ```bash
 $ jekyll serve
-$ open http://127.0.0.1:4000/
 ```
 
-## How to use with Traefik and Docker
+Open [http://127.0.0.1:4000/](http://127.0.0.1:4000/).
 
-Labels are already define in the image to work with Traefik.
+## How to use with Traefik and Docker in Production
 
-To use it in production just run the container :
+Run the container with labels, **change with your needs**:
 
-```bash
-$ docker run -d --restart always guillaumebriday/traefik-custom-error-pages
+```yml
+# docker-compose.yml
+
+errorpage:
+  image: guillaumebriday/traefik-custom-error-pages
+  restart: unless-stopped
+  networks:
+    - web
+  labels:
+    - traefik.enable: "true"
+    - traefik.docker.network: "web"
+    - traefik.http.routers.errorpage.entrypoints: "websecure"
+    - traefik.http.routers.errorpage.rule: "HostRegexp(`{host:.+}`)"
+    - traefik.http.services.globalerrorpage.loadbalancer.server.port: "80"
 ```
 
 ## Build the image
 
 This is a [multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/), to build the final image:
+
 ```bash
 $ docker build -f .cloud/docker/Dockerfile -t traefik-custom-error-pages .
 ```
@@ -46,14 +61,7 @@ $ docker build -f .cloud/docker/Dockerfile -t traefik-custom-error-pages .
 
 As you can see in the Dockerfile, I use [Nginx](https://www.nginx.com/) as Web server to serve static files. To generate this pages, I use [Jekyll](https://jekyllrb.com/) in the first step of the build.
 
-For traefik, I hardcoded [Labels](https://docs.traefik.io/user-guide/docker-and-lets-encrypt/#labels) in the Dockerfile.
-
-You will find in this article [https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all](https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all/) why I set up `priority` and `rule` this way.
-
-```ini
-LABEL traefik.frontend.priority="1"
-LABEL traefik.frontend.rule="HostRegexp:{catchall:.*}"
-```
+You will find in this article [https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all](https://www.techjunktrunk.com/docker/2017/11/03/traefik-default-server-catch-all/) why I set up `rule` this way.
 
 It's very useful because this container will respond to all requests only if there is no container with a real rule.
 
