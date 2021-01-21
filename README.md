@@ -3,7 +3,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/guillaumebriday/traefik-custom-error-pages.svg)](https://hub.docker.com/r/guillaumebriday/traefik-custom-error-pages/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/64de9cea-fa16-4f76-b5b8-a1abb5eb4e2f/deploy-status)](https://app.netlify.com/sites/traefik-custom-error-pages/deploys)
 
-# ⚠️ DEPRECATED WARNING ⚠️
+# ⚠️ DEPRECATION WARNING ⚠️
 
 I'm not using this image anymore. I switched from Traefik to [Caddy](https://caddyserver.com) because Traefik is far too complicated for **my** needs. This image works as it. If you want new features, feel free to fork the project. 
 
