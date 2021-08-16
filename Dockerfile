@@ -3,7 +3,7 @@ FROM jekyll/builder:latest as jekyll
 WORKDIR /tmp
 COPY . /tmp
 RUN chown -R jekyll:jekyll /tmp
-RUN gem install bundler:1.16.6
+RUN gem install bundler
 RUN jekyll build
 
 # nginx
