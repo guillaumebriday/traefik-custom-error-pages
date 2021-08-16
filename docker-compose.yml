@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  errorpages:
+    image: ghcr.io/goliathlabs/traefik-custom-error-pages:latest
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.error-pages.entrypoints=http"
+      - "traefik.http.routers.error-pages.rule=HostRegexp(`{host:.+}`)"
+      - "traefik.http.routers.error-pages.priority=1"
+      - "traefik.http.routers.error-pages-secure.entrypoints=https"
+      - "traefik.http.routers.error-pages-secure.rule=HostRegexp(`{host:.+}`)"
+      - "traefik.http.routers.error-pages-secure.tls=true"
+      - "traefik.http.routers.error-pages-secure.tls.certresolver=http"
+      - "traefik.http.middlewares.error-pages-middleware.errors.status=400-599"
+      - "traefik.http.middlewares.error-pages-middleware.errors.service=error-pages-service"
+      - "traefik.http.middlewares.error-pages-middleware.errors.query=/{status}.html"
+      - "traefik.http.services.error-pages-service.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
+    networks:
+      - proxy
