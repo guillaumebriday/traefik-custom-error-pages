@@ -5,7 +5,7 @@
 
 # ⚠️ DEPRECATION WARNING ⚠️
 
-I'm not using this image anymore. I switched from Traefik to [Caddy](https://caddyserver.com) because Traefik is far too complicated for **my** needs. This image works as it. If you want new features, feel free to fork the project. An alternative project for the traefik error pages is [tarampampam/error-pages](https://github.com/tarampampam/error-pages).
+I'm not using this image anymore. I switched from Traefik to [Caddy](https://caddyserver.com) because Traefik is far too complicated for **my** needs. This image works as it. If you want new features, feel free to fork the project. An alternative project for the traefik error pages is [tarampampam/error-pages](https://github.com/tarampampam/error-pages). It also supports the theme used in this project.
 
 # Custom error pages for Traefik
 
